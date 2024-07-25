@@ -141,6 +141,8 @@ module ::OmniAuth
           fail!(:jwt_nonce_verify_failed, e)
         rescue SubVerifyError => e
           fail!(:openid_connect_sub_mismatch, e)
+        rescue AccessDeniedError => e
+          fail!(:hri_access_denied, e)
         end
       end
 
@@ -171,7 +173,7 @@ module ::OmniAuth
             end
 
             if !decoded.key?("cognito:groups") || !decoded["cognito:groups"].include?("portal-access")
-              raise NonceVerifyError.new(
+              raise AccessDeniedError.new(
                       "User is not allowed to access Discussion Board",
                     )
             end
