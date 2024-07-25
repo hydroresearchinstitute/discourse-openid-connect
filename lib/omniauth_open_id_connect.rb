@@ -171,7 +171,7 @@ module ::OmniAuth
             end
 
             if !decoded["cognito:groups"].include?("portal-access")
-              raise AccessDeniedError.new(
+              raise NonceVerifyError.new(
                       "User is not allowed to access Discussion Board",
                     )
             end
