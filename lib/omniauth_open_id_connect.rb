@@ -170,7 +170,7 @@ module ::OmniAuth
               raise NonceVerifyError.new "JWT nonce is missing, or does not match"
             end
 
-            if !decoded["cognito:groups"].include?("portal-access")
+            if !decoded.key?("cognito:groups") || !decoded["cognito:groups"].include?("portal-access")
               raise NonceVerifyError.new(
                       "User is not allowed to access Discussion Board",
                     )
