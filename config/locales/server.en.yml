@@ -18,3 +18,4 @@ en:
   login:
     omniauth_error:
       openid_connect_discovery_error: Unable to fetch configuration from identity provider. Please try again.
+      hri_access_denied: Sorry, your user credentials do not allow access to this site.
